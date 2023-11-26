@@ -44,13 +44,18 @@ export default function Home() {
         </button>
       </form>
       {isLoading && <Spinner />}
-      {response.length > 0 && (
-        <ul className="bg-gray-800 text-white px-4 py-2 rounded-md text-center pd-4 space-x-4">
-          {response.map((item, index) => (
-            <li key={index} className="my-2"><a href={item}>{item} - has status 404</a></li>
-          ))}
-        </ul>
-      )}
+      {Array.isArray(response) && response.length > 0 && (
+  <ul className="bg-gray-800 text-white px-4 py-2 rounded-md text-center pd-4 space-x-4">
+    {response.map((item, index) => (
+      <li key={index} className="my-2">
+        <a href={item}>{item} - has status 404</a>
+      </li>
+    ))}
+  </ul>
+)}
+{!Array.isArray(response) && (
+  <p className="text-white">Response: {response}</p>
+)}
     </div>
   );
       }
