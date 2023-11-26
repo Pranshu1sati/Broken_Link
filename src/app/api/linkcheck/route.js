@@ -14,8 +14,8 @@ export async function linkiChecker(url) {
     let broken = [];
     let fine = 0;
     checker.on("link", (link) => {
-        // console.log(link, link.state);
-        if (link.state === 'BROKEN'||link.status===404) broken.push(new URL(url));
+        console.log(link, link.state);
+        if (link.state === 'BROKEN'||link.status===404) broken.push(new URL(link.url));
         else fine +=1;
     });
 
